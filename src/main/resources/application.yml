@@ -2,10 +2,10 @@ spring:
   application:
     name: stress-check-web
   datasource:
-    url: jdbc:mysql://localhost:3306/stress_check?characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Tokyo
-    username: your_username
-    password: your_password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:h2:mem:stresscheck;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
   jpa:
     hibernate:
       ddl-auto: none
@@ -15,6 +15,9 @@ spring:
     show-sql: false
   thymeleaf:
     cache: false
+  h2:
+    console:
+      enabled: true
 
 server:
   port: 8080
