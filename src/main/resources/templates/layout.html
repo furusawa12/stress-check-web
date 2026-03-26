@@ -6,7 +6,7 @@
     <title th:replace="${title}">Stress Check</title>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
-<body>
+<body th:classappend="${#strings.endsWith(#httpServletRequest.requestURI, '/login')} ? ' login-page' : ''">
 <header class="site-header">
     <div class="branding">
         <span class="site-title">Stress Check</span>

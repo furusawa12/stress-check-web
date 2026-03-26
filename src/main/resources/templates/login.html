@@ -5,21 +5,97 @@
     <title>ログイン</title>
 </head>
 <body>
-<section class="content-card form-card">
-    <h1>ログイン</h1>
-    <div th:if="${param.logout}" class="notice success">ログアウトしました。</div>
-    <div th:if="${param.error}" class="notice error">ログインに失敗しました。ユーザー名とパスワードを確認してください。</div>
-    <form th:action="@{/login}" method="post" class="auth-form">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <label for="username">ユーザー名</label>
-        <input id="username" name="username" type="text" required/>
+<section class="login-shell">
+    <div class="login-columns">
+        <div class="login-panel login-panel--info">
+            <div class="login-message">
+                <p class="login-eyebrow">はじめてみませんか？</p>
+                <h1 class="login-title">じぶんでできる <span class="login-highlight">Mental Care</span></h1>
+            </div>
+            <ul class="login-links-list">
+                <li><a href="#">じぶんでできるMentalCareとは？</a></li>
+                <li><a href="#">ご利用時の注意事項</a></li>
+                <li><a href="#">推進環境のご確認はこちら</a></li>
+            </ul>
+        </div>
+        <div class="login-panel login-panel--form">
+            <div class="login-lang">日本語</div>
+            <div class="login-card">
+                <div class="login-brand">
+                    <div class="login-logo" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" class="login-logo-mark">
+                            <circle cx="32" cy="32" r="30" fill="#6AA884" opacity="0.18"/>
+                            <path d="M20 33.5c2.2-1 4.6-1.4 7-1.4 3.2 0 6.5.8 9.2 2.4 2.8 1.5 5 3.7 7 6.2l-4.4 3.5c-1.5-1.8-3.2-3.3-5.2-4.5-1.9-1.1-4-1.7-6.2-1.7-2.1 0-4.2.5-6.1 1.5L20 33.5z" fill="#6AA884"/>
+                            <path d="M27 23.5c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5z" fill="#6AA884"/>
+                        </svg>
+                    </div>
+                    <div class="login-brand-text">
+                        <p class="login-brand-name">Stress Care</p>
+                        <p class="login-brand-subtitle">Enterprise solution.</p>
+                    </div>
+                </div>
 
-        <label for="password">パスワード</label>
-        <input id="password" name="password" type="password" required/>
+                <div th:if="${param.logout}" class="notice success">ログアウトしました。</div>
+                <div th:if="${param.error}" class="notice error">ログインに失敗しました。ユーザー名とパスワードを確認してください。</div>
 
-        <button type="submit" class="button">ログイン</button>
-    </form>
-    <p class="hint">初期ユーザー: <code>user</code> / パスワード: <code>password</code></p>
+                <form th:action="@{/login}" method="post" class="login-form">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+                    <div class="input-field">
+                        <span class="input-icon" aria-hidden="true">
+                            <svg viewBox="0 0 20 20">
+                                <path d="M10 10a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-3.03 0-6 1.54-6 3.5V17h12v-1.5C16 13.54 13.03 12 10 12z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        <div class="input-control">
+                            <label class="sr-only" for="username">受験者ID</label>
+                            <input id="username" name="username" type="text" placeholder="受験者ID" required/>
+                        </div>
+                    </div>
+
+                    <div class="input-field">
+                        <span class="input-icon" aria-hidden="true">
+                            <svg viewBox="0 0 20 20">
+                                <path d="M14 8V6a4 4 0 1 0-8 0v2H4v10h12V8h-2zm-6 0V6a2 2 0 1 1 4 0v2H8z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        <div class="input-control">
+                            <label class="sr-only" for="password">パスワード</label>
+                            <input id="password" name="password" type="password" placeholder="パスワード" required/>
+                        </div>
+                        <button type="button" class="password-toggle" aria-label="パスワードを表示">
+                            <svg viewBox="0 0 20 20" class="eye-icon">
+                                <path d="M10 4C5.455 4 1.73 7.11.5 10c1.23 2.89 4.955 6 9.5 6s8.27-3.11 9.5-6C18.27 7.11 14.545 4 10 4zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4a4 4 0 0 1 0 8zm0-2.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="login-help">
+                        <a href="#" class="password-link">パスワードを忘れた方はこちら</a>
+                    </div>
+
+                    <button type="submit" class="login-button">ログイン</button>
+                </form>
+                <p class="hint login-hint">初期ユーザー: <code>user</code> / パスワード: <code>password</code></p>
+            </div>
+            <div class="login-footer">© 2023 stress care enterprise solutions inc. all rights reserved.</div>
+        </div>
+    </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var toggle = document.querySelector('.password-toggle');
+        var passwordInput = document.getElementById('password');
+        if (toggle && passwordInput) {
+            toggle.addEventListener('click', function () {
+                var isHidden = passwordInput.getAttribute('type') === 'password';
+                passwordInput.setAttribute('type', isHidden ? 'text' : 'password');
+                toggle.classList.toggle('is-active', isHidden);
+                toggle.setAttribute('aria-label', isHidden ? 'パスワードを隠す' : 'パスワードを表示');
+            });
+        }
+    });
+</script>
 </body>
 </html>
