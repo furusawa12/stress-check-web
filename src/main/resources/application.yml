@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: stress-check-web
+  datasource:
+    url: jdbc:mysql://localhost:3306/stress_check?characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Tokyo
+    username: your_username
+    password: your_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+  thymeleaf:
+    cache: false
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
